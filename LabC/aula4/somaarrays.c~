@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int* readarray(int n){
+
+  int i;int v[n];
+
+  for (i=0; i<n; i++){
+    scanf("%d\n", v+i);
+}
+  return v;
+
+}
+
+int* somaarrays(int*a, int*b, int n){
+  
+   
+  
+
+}
+
+
+int printarray(int*v, int n){
+  
+
+
+ }
+
+
+intmain(){
+
+  int n;
+  int*va, *vb, *vr;
+
+  scanf("%d\n", &n);
+
+  va=readarray(n);
+  vb=readarray(n);
+  vr=somaarrays(a, b, n);
+
+  printarray(va, n);
+  printarray(vb, n);
+  printarray(vr, n);
+
+  return0;
+}

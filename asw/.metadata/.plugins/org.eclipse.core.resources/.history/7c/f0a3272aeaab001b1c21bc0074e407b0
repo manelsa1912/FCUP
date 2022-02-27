@@ -1,0 +1,281 @@
+package mpjp.game;
+ 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+ 
+import mpjp.game.cuttings.CuttingFactoryImplementation;
+import mpjp.quad.PointQuadtree;
+import mpjp.shared.MPJPException;
+import mpjp.shared.PieceStatus;
+import mpjp.shared.PuzzleInfo;
+import mpjp.shared.PuzzleLayout;
+import mpjp.shared.PuzzleSelectInfo;
+import mpjp.shared.PuzzleView;
+import mpjp.shared.geom.PieceShape;
+import mpjp.shared.geom.Point;
+ 
+ 
+public class Workspace implements Serializable{
+ 
+        private static final long serialVersionUID = 1L;
+        private s
+satic final int DEFAULT_FACTOR = 2;
+       
+        private static double margin;
+        private static double widthFactor;
+        private static double heightFactor;
+       
+        PuzzleInfo info;
+        Date start;
+       
+        private static double radius;
+       
+        private Map<Integer,PieceShape> shapes;
+        private Map<Integer, PieceStatus> pieces;
+ 
+        transient private static PointQuadtree<PieceStatus> puzzlePieces;
+        transient private static PuzzleStructure puzzle;
+       
+        Workspace(PuzzleInfo info) throws MPJPException{
+                this.info = info;
+                start = new Date();
+               
+                widthFactor = heightFactor = DEFAULT_FACTOR;
+               
+                margin = 0.98*radius;
+               
+                puzzle = new PuzzleStructure(info);
+               
+                radius = Math.max(puzzle.getPieceWidth() / 2.0, puzzle.getPieceHeight() / 2.0);
+               
+                shapes = new CuttingFactoryImplementation()
+                                        .createCutting(info.getCuttingName())
+                                        .getShapes(puzzle);
+       
+                scatter();
+                restore();
+ 
+        }
+       
+        public static double getWidthFactor() {
+                return widthFactor;
+        }
+       
+        public static void setWidthFactor(double widthFactor) {
+                Workspace.widthFactor = widthFactor;
+        }
+       
+        public static double getHeightFactor() {
+                return heightFactor;
+        }
+ 
+        public static void setHeightFactor(double heightFactor) {
+                Workspace.heightFactor = heightFactor;
+        }
+ 
+        public static double getRadius() {
+                return radius;
+        }
+ 
+        public static void setRadius(double radius) {
+                Workspace.radius = radius;
+        }
+ 
+        String getId() {
+                String date = String.valueOf(start.getTime());
+                return date+info.getImageName()+info.getCuttingName();
+        }
+       
+        double getSelectRadius() {
+                return Math.max(puzzle.getPieceHeight(), puzzle.getPieceWidth())/2.0;
+        }
+       
+        PuzzleSelectInfo getPuzzleSelectInfo() {
+                return new PuzzleSelectInfo(info,start,getPercentageSolved());
+        }
+       
+        int getPercentageSolved() {
+                return (100 * (puzzlePieces.getAll().size() - getBlocks().size()) / (puzzlePieces.getAll().size() -1));
+        }
+       
+        PuzzleView getPuzzleView() throws MPJPException{
+                return new PuzzleView(
+                                  start,
+                                  info.getWidth()*widthFactor, info.getHeight()*heightFactor,
+                                  info.getWidth(), info.getHeight(),
+                                  puzzle.getPieceWidth(), puzzle.getPieceHeight(),
+                                  info.getImageName(),
+                                  shapes,
+                                  getLocations());
+        }
+       
+        PuzzleLayout getCurrentLayout() {
+                return new PuzzleLayout(this.pieces, getBlocks(), this.getPercentageSolved());
+        }
+       
+        void scatter() {
+                pieces = new HashMap<Integer, PieceStatus>();
+               
+                Map<Integer, Point> locations = getLocations();
+               
+                for(int id = 0; id < puzzle.getPieceCount(); id++) {
+                        Point p;
+                        do {
+                                p = puzzle.getRandomPointInStandardPuzzle();
+                        } while(locations.containsValue(p));
+ 
+                        PieceStatus piece = new PieceStatus(id,p);
+                        piece.setBlock(id);
+                        pieces.put(id,piece);
+                }
+        }
+       
+        void restore() {
+                puzzle = new PuzzleStructure(info);
+                puzzlePieces = new PointQuadtree<PieceStatus>(info.getWidth() * widthFactor, info.getHeight() * heightFactor,margin);  
+               
+                for(PieceStatus p : pieces.values()) {
+                        puzzlePieces.insert(p);
+                }
+        }
+       
+        Integer selectPiece(Point point) {
+                Set<PieceStatus> pointsQT = puzzlePieces.findNear(point.getX(),point.getY(),getSelectRadius());
+                if(pointsQT.size() == 0) return null;
+                int blockId = 0;
+                Integer finalPieceId = null;
+                for(PieceStatus p: pointsQT) {
+                        if(p.getBlock() >= blockId) {
+                                        finalPieceId = p.getId();
+                                        blockId = p.getBlock();
+                        }
+                }
+                return finalPieceId;
+        }
+       
+        PuzzleLayout connect(int movedId, Point point) throws MPJPException {
+                if(movedId < 0 || movedId >= puzzle.getPieceCount()) throw new MPJPException("ID Out of bounds");
+                if(point.getX() < -margin || point.getY() < -margin ||
+                   point.getX() > info.getWidth() * widthFactor ||
+                   point.getY() > info.getHeight() * heightFactor ) throw new MPJPException("Point Out of bounds");    
+               
+                Point translation = new Point(point.getX() - pieces.get(movedId).getX(),
+                                                                          point.getY() - pieces.get(movedId).getY());
+               
+                int moveBlockId = pieces.get(movedId).getBlock();
+                int minBlockId = moveBlockId;
+               
+                Queue<PieceStatus> check = new LinkedList<PieceStatus>();
+                List<PieceStatus> moved = new ArrayList<PieceStatus>();
+               
+                check = applyTranslation(translation, moveBlockId);
+               
+                while(!check.isEmpty()) {
+                        PieceStatus piece = check.poll();
+                        moved.add(piece);
+                       
+                        for(Direction dir: Direction.values()) {
+                                Point pieceToConnect = puzzle.getPieceCenterFacing(dir, piece.getPosition());
+                                Integer id = puzzle.getPieceFacing(dir, piece.getId());
+                               
+                                if(id == null) continue;
+                       
+                                Set<PieceStatus> pointsQT = puzzlePieces.findNear(pieceToConnect.getX(), pieceToConnect.getY(), radius);
+                               
+                                if(pointsQT.size() != 0) {
+                                        for(PieceStatus c : pointsQT) {
+                                                if(c.getId() == id && c.getBlock() != moveBlockId) {
+                                                        minBlockId = Math.min(minBlockId, c.getBlock());
+                                                        c.setPosition(pieceToConnect);
+                                                        c.setBlock(moveBlockId);
+                                                        check.add(c);
+                                                        pieces.put(c.getId(),c);
+                                                }
+                                        }
+                                }
+                        }
+                }
+                for(PieceStatus piece:moved) {
+                        piece.setBlock(minBlockId);
+                        pieces.put(piece.getId(),piece);
+                }
+               
+                return getCurrentLayout();
+        }
+       
+        PuzzleStructure getPuzzleStructure() {
+                return puzzle;
+        }
+       
+        private Queue<PieceStatus> applyTranslation(Point translation, Integer block) throws MPJPException{
+                Queue<PieceStatus> toCheckForConnections = new LinkedList<PieceStatus>();
+               
+                for(PieceStatus piece: pieces.values()) {
+                        if(piece.getBlock() == block) {
+                               
+                                Point newPos = piece.getPosition();
+                                newPos.setX(newPos.getX() + translation.getX());
+                                newPos.setY(newPos.getY() + translation.getY());
+                               
+                                if(newPos.getX() < -margin || newPos.getY() < -margin ||
+                                                   newPos.getX() > info.getWidth() * widthFactor ||
+                                                   newPos.getY() > info.getHeight() * heightFactor ) {
+                                       
+                                        recoverPreviousState(translation, block);
+                                        throw new MPJPException("Translation Out of bounds");
+                                }
+                                               
+                                else{
+                                        piece.setPosition(newPos);
+                                        piece.setBlock(block);
+                                        puzzlePieces.insertReplace(piece);
+                                        pieces.put(piece.getId(),piece);
+                                        toCheckForConnections.add(piece);
+                                }
+                        }
+                }
+                return toCheckForConnections;
+        }
+       
+        private void recoverPreviousState(Point translation, Integer block) {
+                for(PieceStatus piece: pieces.values()) {
+                        if(piece.getBlock() == block) {
+                               
+                                Point newPos = piece.getPosition();
+                                newPos.setX(newPos.getX() - translation.getX());
+                                newPos.setY(newPos.getY() - translation.getY());
+                        }
+                }
+        }
+       
+        private Map<Integer,Point> getLocations(){
+        Map<Integer,Point> locations = new HashMap<Integer,Point>();
+        for(Integer i : pieces.keySet()) {
+                try {
+                        Point center = puzzle.getPieceStandardCenter(i);
+                        locations.put(i, center);
+                } catch(MPJPException e) {
+                        e.printStackTrace();
+                }
+        }
+        return locations;
+    }
+       
+        private Map<Integer, List<Integer>> getBlocks(){
+                Map<Integer, List<Integer>> blocks = new HashMap<Integer, List<Integer>>();
+                for(PieceStatus piece : pieces.values()) {
+                        if(!blocks.containsKey(piece.getBlock())) {
+                                blocks.put(piece.getBlock(), new ArrayList<Integer>());
+                        }
+                        blocks.get(piece.getBlock()).add(piece.getId());
+                }
+                return blocks;
+        }
+}

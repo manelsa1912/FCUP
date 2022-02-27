@@ -1,0 +1,15 @@
+import java.util.Scanner
+
+    public static void Main(){
+    
+    CircularLinkedList<Character> list = new CircularLinkedList<Character>();
+
+    Scanner o = new Scanner(System.in);
+
+    System.out.println("Numero de jogadas:");
+    Int n  = o.nextline();
+
+    System.out.println("Frase do jogo:");
+    String line = o.nextline();
+
+    

@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Bnb {
+    Pesquisas pesquisas;
+
+    Bnb() {
+        pesquisas = new Pesquisas();
+    }
+
+    public void bnb(List<Rect> arrayRecGlobal, List<Point> arrayPoints) {
+        int limite;
+        Queue<NodePoint> fila = new LinkedList <NodePoint>();
+        if( arrayPoints.size()%3 == 0) 
+            limite = arrayPoints.size()/3;
+        else
+            limite = arrayPoints.size()/3 +1;
+        NodePoint raiz = new NodePoint(arrayPoints,arrayPoints.size());
+        fila.add(raiz);
+        List<Point> melhor = arrayPoints;
+
+        while (!fila.isEmpty()) {
+            NodePoint temp = fila.remove();
+            if (pesquisas.verificaSolucao(temp, arrayRecGlobal.size())) {
+                List<Point> solution = new ArrayList<Point>();
+                solution.add(temp.Ponto); //proprio ponto
+                NodePoint aux = temp.Pai;
+                while (aux.Pai != null) {
+                    solution.add(aux.Ponto);
+                    aux = aux.Pai;
+                }
+                //solution solução para aquele no
+                if(solution.size() < melhor.size()) {
+                    melhor = solution;
+                }
+            }
+            if (temp.nivel+1 <= limite) {
+                List<NodePoint> lista = temp.gerarFilhos(arrayPoints);
+
+                for (NodePoint p : lista) {
+                    fila.add(p);
+                    System.out.println("Pontos filhos" + p.Ponto.id);
+                }
+            }
+        }
+        //return melhor;
+        for(Point p: melhor)
+            System.out.println("guarda" + p.toString());
+    }
+}

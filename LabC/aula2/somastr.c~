@@ -1,0 +1,21 @@
+#include<stdio.h>
+#define N 100
+void soma(str[]){
+
+  int soma=0;
+
+  for(int i=0;str[i]!='\n';i++){
+    printf("%d", str[i]);
+    soma=soma+str[i];
+  }
+  printf("%d", soma);
+}
+
+
+int main(str[N]){
+
+  soma(str);
+
+  return 0;
+}
+  

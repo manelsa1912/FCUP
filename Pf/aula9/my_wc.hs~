@@ -1,0 +1,10 @@
+import System.IO
+
+wc :: String -> String
+wc = show(length $ lines s) ++ "\t" ++ show(length $ words s) ++ "\t" ++ show(length s)
+
+
+main :: IO()
+main = do s <- get Contents
+          let s' = wc s
+	  putStrln s'

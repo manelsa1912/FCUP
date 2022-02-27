@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+void decompor(int total_seg, int *horas, int *mins, int *segs){
+
+  
+
+
+
+
+
+
+}
+
+
+int main(){
+
+  int a, b, c;
+  int ts, *h, *m, *s;
+
+  printf("introduz o total de segundos:\n");
+  scanf("%d", &ts);
+
+  h=&a; m=&b; s=&c;
+
+
+  decompor(ts, *h, *m, *s);
+
+  printf("%d, segundos = %d horas, %d minutos e %d segundos.\n", ts, );
+  
+   return 0;
+}

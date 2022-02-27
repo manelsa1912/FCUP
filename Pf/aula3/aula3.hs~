@@ -1,0 +1,2 @@
+aprox::Int -> Double
+aprox m = 4.0*(sum [(-1.0)^x/(fromIntegral(2^x+1)) | x <- [0..n]))

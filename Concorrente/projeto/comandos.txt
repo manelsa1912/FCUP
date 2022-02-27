@@ -1,0 +1,10 @@
+//no terminal do servidor
+c(database).
+database:do_this_once().
+database:start().
+database:reset_tables().
+
+//no terminal de cliente
+rpc:call('server@derpro',database,do_this_once,[]).
+rpc:call('server@derpro',database,start,[]).
+rpc:call('server@derpro',database,reset_tables,[]).

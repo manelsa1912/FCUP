@@ -1,0 +1,92 @@
+BASE DE DADOS FCUP 2020
+
+Trabalho realizado por: João Alves - up201810087 
+                        Manuel Sá - up201805273
+
+
+Ficheiros incluidos nesta pasta: 
+   -projeto.sql- o Ficheiro que contém a BD no formato sql;
+   -nome do modelo er - o Ficheiro que contém o modelo ER da BD;
+   -nome do modelo relcaional - o Ficheiro que possui o modelo relacional da BD;
+   -relatorio.Markdown - o Ficheiro atual.
+
+
+Nome da BD - dc_universe
+
+Resumo: 
+
+DC universe é o universo de ficção criado pela editora norte-americana DC Comics.
+
+A BD em questão aborda três componentes(que serão as suas tabelas):
+   -PEOPLE - Alguns personagens que fazem parte deste universo;
+   -TEAMS - Algumas equipas e associações que foram surgindo no universo;
+   -MOVIES_AND_SERIES - Algumas referencias cinematográficas e televisivas que fazem parte do universo em questão.
+
+Como funciona cada uma:
+
+   -PEOPLE: Cada elemento da tabela tem os seguintes dados:
+               -Num - Numero atribuido ao personagem na tabela;
+               -Name - Nome oficial;
+               -Know_Name - Nome pelo qual é conhecido;
+               -Side - Determina se é heroi ou vilão;
+               -Birthdate - Nascimento oficial e caso não exista primeira aparição no universo;
+               -Sex - Determina o género da personagem;
+               -Weapons - Lista do arsenal do personagem;
+               -Abilities - Lista das suas capacidades e poderes;
+               -Origin - Local oficial de nascimento/ Local onde existe;
+               -Creator -Escritor/es que criou/criaram o personagem.
+
+   -TEAMS: Cada elemento da tabela possui os seguintes dados:
+               -Team_Name - Nome oficial da equipa;
+               -Team_Side - Determina se é uma equipa de heróis ou de vilões;
+               -Team_Leader - O personagem que lidera a equipa;
+               -Members - Personagens que fazem parte da equipa;
+               -Base_of_Operations - Local oficial da base da equipa.
+
+   -MOVIES_AND_SERIES: Cada elemento da tabela contém os seguintes dados:
+               -Name - Nome da obra;
+               -Type - Distinção de filme ou série;
+               -Release_Year - Data oficial de publicação;
+               -Characters - Personagens que fazem parte do elenco;
+               -Teams - Referencias a equipas na obra.
+
+
+O modelo ER:
+EXPLICAR MODELO ER AQUI::::::
+
+
+O modelo Relacional:
+EXPLICAR MODELO RELACIONAL AQUI:::::
+
+                                      _  _                
+                            _____*~~~  **  ~~~*_____            
+                         __* ___     |\__/|     ___ *__
+                       _*  / 888~~\__(8OO8)__/~~888 \  *_
+                     _*   /88888888888888888888888888\   *_
+                     *   |8888888888888888888888888888|   *
+                    /~*  \8888/~\88/~\8888/~\88/~\8888/  *~
+                   /  ~*  \88/   \/   (88)   \/   \88/  *~
+                  /    ~*  \/          \/          \/  *~
+                 /       ~~*_                      _*~~/
+                /            ~~~~~*___ ** ___*~~~~~  /
+               /                      ~  ~         /
+              /                                  /
+             /                                 /
+            /                                /
+           /                    t__n__r__  /
+          /                    | ####### |
+         /            ___      | ####### |             ____i__           /
+        /  _____p_____l_l____  | ####### |            | ooooo |         qp
+i__p__ /  |  ##############  | | ####### |__l___xp____| ooooo |      |~~~~|
+ oooo |_I_|  ##############  | | ####### |oo%Xoox%ooxo| ooooo |p__h__|##%#|
+ oooo |ooo|  ##############  | | ####### |o%xo%%xoooo%| ooooo |      |#xx%|
+ oooo |ooo|  ##############  | | ####### |o%ooxx%ooo%%| ooooo |######|x##%|
+ oooo |ooo|  ##############  | | ####### |oo%%x%oo%xoo| ooooo |######|##%x|
+ oooo |ooo|  ##############  | | ####### |%x%%oo%/oo%o| ooooo |######|/#%x|
+ oooo |ooo|  ##############  | | ####### |%%x/oo/xx%xo| ooooo |######|#%x/|
+ oooo |ooo|  ##############  | | ####### |xxooo%%/xo%o| ooooo |######|#^x#|
+ oooo |ooo|  ##############  | | ####### |oox%%o/x%%ox| ooooo |~~~$~~|x##/|
+ oooo |ooo|  ##############  | | ####### |x%oo%x/o%//x| ooooo |_KKKK_|#x/%|
+ ooo~\|ooo|~\##############  | ~\####### |oox%xo%%oox%~\ooooo |_|~|~\|xx%/|
+ ooo ||oHo| |####AAAA######  |h||##XX### |x%x%WWx%%/ox||ooDoo |_| |Y||xGGx|
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  | ~~~~~~~

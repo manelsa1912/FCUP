@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+
+void ordenar(char[]){
+
+  int i, j;
+
+  for(i = 1; char[i]!='\0'; i++) {
+    int x = char[i];
+    j = i-1;
+    while(j>=0 && vec[j] > x) {
+      char[j+1] = char[j];
+      j--;
+    }
+    char[j+1] = x;
+  }
+}

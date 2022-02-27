@@ -1,0 +1,455 @@
+body{
+	background-image: url(imagens/wllppr.png);
+}
+
+.center{
+	display: inline-block;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+#peniche, #loginer, #gamemode,#gamemode2, #dificuldades, #cores, #instructions {
+	width: 100%;
+	text-align: center;
+}
+
+
+.titles{
+	color: white;
+	font-family: DejaVu Sans Mono;
+	font-size: 50px;
+
+}
+
+.bigtitle{
+	font-size: 75px;
+}
+
+.labels{
+	color: white;
+	font-family: DejaVu Sans Mono;
+}
+
+.inputbox{
+	color: white; 
+	background-color:black; 
+	border-radius:0%;
+}
+
+
+.but{
+	background-color: black;
+	color: white;
+	font-family: DejaVu Sans Mono;
+	width: 122px;
+	height: 40px;
+	transition: 1.0s;
+	cursor: pointer;
+}
+
+.but:hover{
+	background-color: white;
+	color: black;
+}
+
+.but2{
+	background-color:white;
+	color:black;
+	font-family: DejaVu Sans Mono;
+	width: 122px;
+	height: 40px;
+	transition: 1.0s;
+	cursor: pointer;
+}
+
+.but2:hover{
+	color: white;
+	background-color: black;
+}
+
+
+.logo{
+	width:240px;
+	height: 240px;
+}	
+
+#peniche p{
+	font-family:DejaVu Sans Mono;
+	color: white;
+}
+
+#dificuldades{
+	display:none;
+}
+
+#cores{
+	display:none;
+}
+
+#loginer{
+	display:none;
+}
+
+#jogo{
+	display:none;
+	position: absolute;
+	width: 600px;
+	height: 600px;
+	left: 30%;
+
+}
+
+#gamemode,#gamemode2{
+	display:none;
+}
+
+#logogame{
+	display:none;
+	position: absolute;
+	width:240px;
+	height: 240px;
+	right: 5%;
+	top: 27%;
+}
+
+#butmenu{
+	top:15%;
+	right: 1%;
+	width:28%;
+	height: 130px;
+	display:none;
+	position: absolute;
+
+}
+
+#butmenu button{
+	right:0%;
+	position: absolute;
+}
+
+#butmenu h1{
+	
+	left: 40%;
+	position: absolute;
+}
+
+#instructions{
+	width:98%;
+	height:98%;
+	background-color: transparent;
+	display: none;
+	position: absolute;
+	font-family: DejaVu Sans Mono;
+	color: white;
+	
+}
+
+#instructions button{
+	bottom: 4%;
+	position: absolute;
+}
+#score{
+	position:absolute;
+	font-family: DejaVu Sans Mono; 
+	top:555px;width: 541px; 
+	font-size: 44px; 
+	background-color: black;	color:white;
+	text-align:center;
+	border: 3px solid white;
+}
+
+.boardback{
+	position: absolute;
+	background-color: white;
+	height:500px;
+	width:500px;
+}
+
+.scores{
+	position:absolute;
+	font-family: DejaVu Sans Mono; 
+	top:550px;
+	width: 550px; 
+	font-size: 48px; 
+	background-color:transparent;
+	color:white;
+	text-align:center;
+}
+
+.bmenu{
+	width:90%;
+	position: absolute;
+}
+
+#pcboard{
+		width:90%;
+		right: 4%;
+		height:75px;
+		background-color: black;
+		border: 3px solid white;
+		position: absolute;
+		font-family: DejaVu Sans Mono;
+		color: white;
+		font-size: 50px;
+		display: none;
+		
+}
+
+#plyrboard{
+	top: 20%;
+	right: 4%;
+	width:90%;
+	height:75px;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+	font-family: DejaVu Sans Mono;
+	color: white;
+	font-size: 50px;
+	display: none;
+}
+
+#scoreboard{
+	top: 16%;
+	right: 0%;
+	width:380px;
+	height:550px;
+	display: none;
+	position: absolute;
+	
+}
+
+#scoreboard button{
+	top: 40%;
+	right: 4%;
+	position: absolute;
+}
+
+#scoreboard img{
+	position: absolute;
+	top: 30%;
+	left: 33%;
+	width:100px;
+	height:100px;
+}
+
+#credits{
+	
+	position: absolute;
+	font-family: DejaVu Sans Mono;
+	width:380px;
+	height:100px;
+	left:71%;
+	bottom: 7%;
+	display: none;
+}
+
+#credits button{
+	right: 0;
+	position: absolute;
+	
+}
+
+#credits p{
+	font-family:DejaVu Sans Mono;
+	color: white;
+	right: 0;
+	position: absolute;
+}
+
+#wturn, #bturn, #pcturn, #oturn{
+	right: 1%;
+	height: 10%;
+	width: 27%;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+	display: none;
+}
+
+#wturn h1, #bturn h1, #pcturn h1,#oturn h1{
+	font-size: 30px;
+	color: white;
+	font-family: DejaVu Sans Mono;
+	position: absolute;
+}
+
+#bwin, #wwin{
+	position: absolute;
+	background-color: black;
+	height:610px;
+	width:540px;
+	border: 3px solid white;
+	display: none;
+	left:30%;
+}
+
+
+#bwin h1, #wwin h1{
+	position: absolute;
+	left: 10%;
+}
+
+#bwin img, #wwin img{
+	position: absolute;
+	left: 25%;
+	top: 20%;
+}
+
+#bwin button, #wwin button{
+	position: absolute;
+}
+
+#playagain{
+	position: absolute;
+	left: 35%;
+	bottom: 20%;
+}
+
+#leave{
+	position: absolute;
+	left: 35%;
+	bottom: 10%;
+}
+
+#tabuleiro{
+	
+	left: 2%;
+	width: 21%;
+	height: 65%;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+}
+
+#tabuleiro h1{
+	font-size: 30px;
+}
+
+#tabuleiro p{
+	font-size: 14px;
+}
+#tabuleiro img{
+	position: absolute;
+	bottom: 5%;
+	left: 34%;
+	width: 90px;
+	height: 90px;
+}
+
+#inicio{
+	left: 27%;
+	width: 21%;
+	height: 65%;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+}
+
+#inicio img{
+	position: absolute;
+	bottom: 5%;
+	left: 34%;
+	width: 90px;
+	height: 90px;
+}
+
+#inicio p{
+	font-size: 14px;
+}
+
+#jogarpeças, #jogarpeças2, #passar{
+	left: 52%;
+	width: 21%;
+	height: 65%;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+	display: none;
+}
+
+#jogarpeças h1,#jogarpeças2 h1{
+	font-size: 25px;
+}
+
+#jogarpeças p, #jogarpeças2 p, #passar p{
+	font-size: 11px;
+}
+#jogarpeças button, #jogarpeças2 button, #passar button{
+	display: inline-block;
+}
+#terminar{
+	left: 77%;
+	width: 21%;
+	height: 65%;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+}
+#terminar p{
+	font-size: 14px;
+}
+
+
+#next1, #next2{
+	right: 10%;
+
+}
+
+#back1, #back2{
+	left: 10%;
+}
+
+#ranktitle{
+	top: 12%;
+	height: 10%;
+	width: 27%;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+	display: none;
+}
+
+#ranking{
+	top: 25%;
+	width: 27%;
+	height: 65%;
+	background-color: black;
+	border: 3px solid white;
+	position: absolute;
+	display: none;
+}
+
+#ranking th{
+	padding-right: 75px;
+	top:3%;
+}
+
+
+#ranking h1{
+	font-size: 30px;
+	color: white;
+	font-family: DejaVu Sans Mono;
+	position: absolute;
+}
+
+#ranking tr,#ranking td{
+	color: white;
+	font-family:DejaVu Sans Mono;
+}
+
+#ranktitle h1{
+	font-size: 24px;
+	color: white;
+	font-family: DejaVu Sans Mono;
+	position: absolute;
+}
+
+#leaverank{
+	position: absolute;
+	display: none;
+	bottom: 2%;
+}
+
+#rankings{display: none;}
+

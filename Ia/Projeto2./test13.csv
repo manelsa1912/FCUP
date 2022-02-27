@@ -1,0 +1,6 @@
+PassengerId,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
+1086,2,"Drew, Master. Marshall Brines",male,8.0,0,2,28220,32.5,,S
+919,3,"Daher, Mr. Shedid",male,22.5,0,0,2698,7.225,,C
+1141,3,"Khalil, Mrs. Betros (Zahie Maria"" Elias)""",female,,1,0,2660,14.4542,,C
+1283,1,"Lines, Mrs. Ernest H (Elizabeth Lindsey James)",female,51.0,0,1,PC 17592,39.4,D28,S
+1191,3,"Johansson, Mr. Nils",male,29.0,0,0,347467,7.8542,,S

@@ -1,0 +1,24 @@
+/*
+ dbdia example - weak entity definitions
+ Eduardo Marques
+ https://github.com/edrdo/dbdia
+*/
+
+// Strong entity types EntityA and EntityB
+EntityA ( _ KeyA _ )
+EntityB ( _ KeyB _ )
+
+// Weak entity: WeakEntA
+// Parent entity: EntityA with partial participation
+// Identifying relationship: IdentRelA
+EntityA --- << IdentRelA >> WeakEntA(_ PKeyA _, OtherWA)
+
+// A normal relationship called Rel involving (strong) entity EntityB  
+// and weak entity WeakeEntA
+EntityB --- M --- <Re> --- N --- WeakEntA
+
+// Weak entity: WeakEntB
+// Parent entity: EntityA with full participation
+// Identifying relationship: IdentRelB
+EntityB === << IdentRelB >> WeakEntB(_ PKeyWB _, OtherWB)
+

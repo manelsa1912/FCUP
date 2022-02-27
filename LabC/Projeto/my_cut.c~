@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+
+void cut_io(){
+
+  char c;
+  int a=0;
+
+  while(c!=EOF){
+
+    a++;
+    if(c=='\n') a=0;
+
+
+
+    putchar(c);
+
+  }
+}
+
+void cut_file(){
+
+  char c;
+  int a=0;
+
+  putchar(c);
+
+}
+
+
+
+
+Adoro
+
+todas as criaturas que sao
+unicas nesta terra
+aqui habita a paz
+
+mas entre todas as pessoas
+a pessoa que eu comi
+e pura e simplesmente
+
+

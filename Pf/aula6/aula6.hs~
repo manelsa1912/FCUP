@@ -1,0 +1,2 @@
+(+++):: [a]->[a]->[a]
+(+++) (xs) (ys) = foldr(\x acc -> x:acc) ys xs

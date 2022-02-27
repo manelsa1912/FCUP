@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+int pointer(){
+  char c, *ptrc;
+    c='.';
+  ptrc=&c;
+  printf("tamanho: &lu\n", sizeof(c));
+  printf("tamanho do endereco: %lu\n", sizeof(&c));
+  printf("tamanho do apontador:%lu\n", sizeof(ptrc);
+  printf("tamanho do valor apontado: %lu\n", sizeof(*ptrc));
+  printf("Valores '%p', '%p', '%c' e '%c'\n", &c, ptrc, c, *ptrc);
+
+	 }
+
+int main(){
+
+
+
+
+
+  return 0;
+}

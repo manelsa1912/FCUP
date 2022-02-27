@@ -1,0 +1,230 @@
+<!-- <!DOCTYPE html> -->
+<!--Site original com gifs enviado por email-->
+<html lang="pt">
+    
+        <head>
+		  <meta charset="utf-8">
+          <link rel="stylesheet" href="tw-mooshak/style.css" type="text/css">
+		  <script src="tw-mooshak/game.js"></script>
+		  <script src="tw-mooshak/othll.js"></script>
+		  <script src="tw-mooshak/online.js"></script>
+          <title>OTHELLO</title>
+          <link rel="shortcut icon" href="tw-mooshak/imagens/logow.png" type="image/x-icon">
+        </head>
+      
+		<body>
+			<div id="peniche">
+				<div class="center">
+					<h1 class="titles bigtitle  ">OTHELLO</h1>
+					<img src=tw-mooshak/imagens/logow.png class="logo  " alt="logo"><br><br>
+					<button type="button" class="but  " onclick="newgame()">Novo Jogo</button><br>
+					<button type="button" class="but  " onclick="login()">Login</button><br>
+					<button type="button" class="but  " onclick="showinstructions()">Instruções</button><br><br>
+					<p class=" ">by Amadeu Marques & Manuel Sá</p>
+				</div>
+			</div>
+		
+			
+		
+			<div id="loginer">
+				<div class="center">
+					<h1 class="titles  ">LOGIN</h1>
+					<img src=tw-mooshak/imagens/logow.png class="logo  " alt="logo"><br><br>
+					<label class="labels  "> username:</label>
+					<input id = "username" type="text" class="inputbox"><br><br>
+					<label class="labels"> password:</label>
+					<input id="pass" type="password" class="inputbox"><br><br><br>
+					<input type="submit" value="Confirmar"  class="but" onclick="register()"><br>
+					<button type="button"  class="but  " onclick="voltar1()">Voltar</button>
+				</div>
+			</div>
+		
+
+			<div id="gamemode">
+				<div class="center">	
+					<h1 class="titles  ">MODO DE JOGO</h1>
+					<img src=tw-mooshak/imagens/logow.png class="logo  " alt="logo"><br><br>
+					<button type="button" class="but" onclick="gmodepc()">VS COMPUTADOR</button><br>
+					<button type="button" class="but" onclick="gmodeplyr()">VS JOGADOR</button>
+				</div>
+			</div>
+		
+			
+			<div id="gamemode2">
+				<div class="center">	
+					<h1 class="titles  ">MODO DE JOGO</h1>
+					<img src=tw-mooshak/imagens/logow.png class="logo  " alt="logo"><br><br>
+					<button type="button" class="but" onclick="gmonline()">COMEÇAR JOGO</button>
+				</div>
+			</div>
+
+
+			<div id = "dificuldades">
+				<div class="center">	
+					<h1 class="titles  ">DIFICULDADE</h1>
+					<img src=tw-mooshak/imagens/logow.png class="logo  " alt="logo"><br><br>
+					<button type="button" class="but  " onclick="setdific1()">Facil</button><br>
+					<button type="button" class="but  " onclick="setdific2()">Medio</button><br>
+					<button type="button" class="but  " onclick="setdific3()">Dificl</button><br><br>
+					<button type="button" class="but  " onclick="voltar2()">Voltar</button>
+				</div>
+			</div>
+		
+			
+			<div id = "cores">
+				<div class="center">
+						<h1 class="titles  ">Selecionar Cor</h1>
+						<img src=tw-mooshak/imagens/logow.png class="logo  " alt="logo"><br><br>						
+						<button class="but" onclick="sgameb()">PRETO</button><br>					
+						<button class="but" onclick="sgamew()">BRANCO</button><br><br>
+						<button type="button" class="but  " onclick="voltar3()">Voltar</button>
+				</div>
+			</div>
+			
+			<div id="instructions">
+				<h1 class="titles">INSTRUÇÕES</h1>
+				
+				<div id="tabuleiro">
+					<h1>Tabuleiro/peças</h1>
+					<p>Grelha com 8 linhas por 8 colunas</p>
+					<p>Não xadrezado, contrariamente às damas ou ao xadrez</p>
+					<p>Tabuleiro quadrado</p>
+					<p>Geralmente de fundo verde</p>
+					<p>As peças denominam-se discos</p>
+					<p>São circulares</p>
+					<p>Com 2 cores:preto e branco</p>
+					<img src=tw-mooshak/imagens/example.png alt="board"><br><br>
+				</div>
+				
+				<div id="inicio"> 
+					<h1>Inicio de jogo</h1>
+					<p>Na posição inicial há 4 peças</p>
+					<p>2 de cada uma das 2 tonalidades — claro e escuro</p>
+					<p>Colocadas nas casas centrais</p>
+					<p>Peças da mesma tonalidade ficam em diagonal</p>
+					<p>As peças escuras jogam primeiro
+					<img src=tw-mooshak/imagens/logow.png alt="board"><br><br>
+				</div>
+				
+				<div id="jogarpeças">
+					<h1>Jogar Peças/Passar</h1>
+
+					<p>Durante o jogo os jogadores jogam alternadamente</p>
+					<p>Colocam uma peça da sua cor numa casa livre</p>
+					<p>Se na mesma linha, coluna ou diagonal da peça jogada …</p>
+					<p>… peças da cor contrária viram para a cor do jogador</p>
+					<p>Só pode ser jogada uma peça se for virada alguma</p>
+					<button id="next1" type="button" class="but" onclick="next1()">Próximo</button>
+				</div>
+
+				<div id="jogarpeças2">
+					<h1>Jogar Peças/Passar</h1>
+					<button type="button" class="but" onclick="next2()">Próximo</button>
+					<p>A peça colocada pode virar várias peças do adversário</p>
+					<p>Que estão na mesma linha coluna ou diagonal da peça jogada</p>
+					<p>Desde que num dos extremos esteja a peça jogada</p>
+					<p>E no outro esteja uma peça do mesmo tom</p>
+					<p>Podem ser viradas várias peças consecutivas do adversário</p>
+					<p>Na mesma linha, coluna ou diagonal </p>
+					<p>Desde que delimitadas pela peça jogada</p>
+					<p>E outra do mesmo tom</p> 
+					<button id="back1" type="button" class="but  " onclick="instback1()">Voltar</button> 
+				</div>
+
+				<div id="passar">
+					<h1>Jogar Peças/Passar</h1>
+
+					<p>Na sua vez, o jogador só pode jogar se virar peças</p>
+					<p>Caso conrário não poderá jogar e terá de passar a jogada</p>
+					<p>Mas só pode passar se não tiver jogada possível</p>
+					<button id="back2" type="button" class="but  " onclick="instback2()">VOLTAR</button>
+					
+				</div>
+				
+				<div id="terminar">
+					<h1>Terminar</h1>
+					<p>Jogo termina quando nenhum jogador pode jogar</p>
+					<p>Geralmente quando o tabuleiro está todo preenchido</p>
+					<p>Mas não necessariamente — ver exemplos acima</p>
+					<p>Ganha o jogador com maior número de peças</p>
+
+				</div>
+
+				<button type="button" class="but" onclick="voltar4()">Voltar</button>
+			</div>
+
+			<div id="jogo">
+				<div class="center">
+					<div id="boardBackground" class="boardback"></div>
+					<div id="pLayer"></div>
+					<div id="displayMoves"></div> 
+					<div id="score"> Black : 2 White : 2</div>
+				</div>
+			</div>
+
+			<div id = "butmenu" class="bmenu">	
+				<button type="button" class="but" id="scrbrdbut"  onclick="showscoreboard()">SCOREBOARD</button><br>
+			</div>	
+
+			<img id="logogame" src=tw-mooshak/imagens/logow.png alt="logo">
+
+			<div id="scoreboard">
+						
+				<div id="pcboard">
+				    Branco:
+				</div>
+				<div id="plyrboard">
+					Preto:
+				</div>
+				<button type="button" class="but" onclick="voltar5()">Voltar</button>
+			</div>
+
+			<div id="credits">
+				<button type="button" class="but  " onclick="desistir()">DESISTIR</button><br><br>
+				<p>Made by Amadeu Marques & Manuel Sá</p><br>
+				<p>Tecnologias Web 2020/21</p>
+			</div>
+			
+			<div id="bturn">
+				<h1>TURNO BRANCO</h1>
+			</div>
+			
+			<div id="wturn">
+				<h1>TURNO PRETO</h1>
+			</div>
+
+			<div id="oturn">
+				<h1 id="sturn">Aguarde o adversário</h1>
+			</div>
+
+			<div id="bwin">
+				
+					<h1 class="titles">VITÓRIA PRETO</h1>
+					<img src=tw-mooshak/imagens/logow.png class="logo" alt="logo"><br>
+					
+					<button id="playagain" type="button" class="but" onclick="playagain()">JOGAR OUTRA VEZ</button><br>
+					<button id="leave" type="button" class="but" onclick="desistir()">SAIR</button>
+				
+			</div>
+
+			<div id="wwin">
+				
+					<h1 class="titles">VITÓRIA BRANCO</h1>
+					<img src=tw-mooshak/imagens/logow.png class="logo  " alt="logo"><br>
+					
+					<button id="playagain2" type="button" class="but" onclick="playagain()">JOGAR OUTRA VEZ</button><br>
+					<button id="leave2" type="button" class="but" onclick="desistir()">SAIR</button>
+	
+			</div>
+
+			<div id="r">
+				<button id="rankings" type="button" class="but" onclick="showrank()">RANKING</button>
+				<div id=ranktitle>
+					<h1>Nome, nºVitorias, nºJogos</h1>
+				</div>
+				<div id="ranking" onload=" ranking()"></div>
+				<button id="leaverank" type="button" class="but" onclick="leaverank()">VOLTAR</button>
+			</div>
+
+		</body>
+</html>

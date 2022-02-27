@@ -1,0 +1,16 @@
+Vertices
+class, struct
+x,y
+ID
+Retangulos
+
+
+Retangulos 
+class, struct
+Vertices
+guardas?
+ID
+vertices[coleçao]
+
+
+Heaps estruturas de dados

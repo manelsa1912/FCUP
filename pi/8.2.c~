@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<sdtlib.h>
+#include<string.h>
+
+int ordenada(int vec[], int size){
+  int i, p=1;
+
+ for(i=0;i<size;i++){
+    p=p+i;
+
+    if(vec[i]>=vec[p]){
+      break;
+      return 0;
+    }
+ }
+ return 1;
+}
+
+  

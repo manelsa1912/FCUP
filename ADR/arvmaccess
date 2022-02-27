@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Script for accessing AR VMs from outside DCC
+
+remoteviewer=remote-viewer
+
+echo "Going to start SOCKS proxy at ssh.alunos.dcc.up.pt"
+read -p "DCC Labs Username: " user
+
+ssh -N -f -D 1080 ${user}@ssh.alunos.dcc.fc.up.pt
+
+echo -e "\nMake sure your browser is configured for using SOCKSv5 proxy 127.0.0.1, port 1080, with DNS access through the proxy.  Go to https://lredes-ovirt.alunos.dcc.fc.up.pt/ , start the VM and download the .vv file to the current directory (`pwd`). Do not open the file.\n"
+#firefox -ProfileManager
+firefox -P ADR http://lredes-ovirt.alunos.dcc.fc.up.pt/
+
+read -n 1 -s -r -p "Press any key when ready..."
+
+unset GREP_OPTIONS GREP_COLOR GREP_COLORS
+
+if [ ! -f console.vv ]; then
+	echo "ERROR: No console.vv file in current dir" >&2
+	ps axwww | grep "ssh -N -f -D 1080 ${user}@ssh.alunos.dcc.fc.up.pt" | grep -v grep | sed -e 's/^\s\+//' | cut -f1 -d' ' | xargs kill
+	exit 1
+fi
+
+host=`grep -m 1 '^host=' console.vv | cut -f2 -d=`
+port=`grep -m 1 '^tls-port=' console.vv | cut -f2 -d=`
+
+eschost=`echo $host | sed -e 's/\./\\\\./g'`
+
+sed -i -e "s/host=$eschost/host=127.0.0.1/" console.vv
+
+ssh -N -f -L${port}:${host}:${port} ${user}@ssh.alunos.dcc.fc.up.pt
+
+"$remoteviewer" console.vv
+
+ps axwww | grep "ssh -N -f -D 1080 ${user}@ssh.alunos.dcc.fc.up.pt" | grep -v grep | sed -e 's/^\s\+//' | cut -f1 -d' ' | xargs kill
+ps axwww | grep "ssh -N -f -L${port}:${host}:${port} ${user}@ssh.alunos.dcc.fc.up.pt" | grep -v grep | sed -e 's/^\s\+//' | cut -f1 -d' ' | xargs kill
+

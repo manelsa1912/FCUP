@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char* argv[]){
+
+  int i;
+
+  if(argc > 4){
+    printf("seq: extra operands");
+    exit(1);
+  }
+
+  if(argc==1){
+    printf("missing operand");
+    exit(2);
+  }
+
+  if(argc==2){
+    for(i=1;i<argv[1];i++) printf("%d\n", i);
+  }
+
+  if(argc==3){
+    for(i=argv[1];i<argv[2];i++) printf("%d\n", i);
+  }
+
+  if(argc==4){
+    i=argv[1];
+    while(i<argv[4]){
+      printf("%d\n", i);
+      i+=argv[3];
+    }
+  }
+  return 0;
+}

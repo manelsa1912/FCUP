@@ -1,0 +1,11 @@
+'Flash, Reverse Flash'
+'Super Man, Batman,Wonder Woman, Flash, Aquaman, Lex Luthor'
+'Joker, Batman',
+'Aquaman, Black Manta',
+'Deadshot, Amanda Waller, Joker, Batman',
+'Falsh, Amanda Waller, Deathstroke',
+'Super Man, Batman, Lex Luthor, Wonder Woman',
+'Batman, Robin, Catwoman',
+'Wonder Woman', 
+ 'Wonder Woman, Cheetah',
+ 'Cat Woman, Batman, Joker'

@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<ctype.h>
+
+void esp(char *s){
+
+  if ((isaplha(s)==0)&&(isdigit(0)==0)) s=' ';
+ return;
+}
+
+int main(int agrc, char **argv){
+  char str[]="a, Ah Ah!";
+  char* s=str;
+
+  printf("%s\n",s);
+
+  esp(a);
+
+  printf("%d\n", s);
+
+  return 0;
+}

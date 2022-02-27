@@ -1,0 +1,2 @@
+dec2int:: [Int] -> Int
+dec2int xs = foldl (lacc x -> acc * 10 + x) 0 xs

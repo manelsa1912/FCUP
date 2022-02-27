@@ -1,0 +1,2 @@
+factorial :: [Integer]
+factorial = 1 : [ n*(n-1) | n <- zip factotial (tail factorial)]

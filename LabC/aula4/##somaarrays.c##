@@ -1,0 +1,1 @@
+#include <stdio.h>#include <stdlib.h>int*readarray(intn){inti;intv[n];for (i=0; i<n; i++){scanf("%d\n", v+i)    }returnv;}int*somaarrays(int*a, int*b, intn) {/* A completar:deverá retornar um novo arraycom a soma dos arrays arrays a e b,elemento a elemento*/}intprintarray(int*v, intn){// A completar:// deverá imprimir os elementos de v}
